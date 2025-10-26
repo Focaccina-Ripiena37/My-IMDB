@@ -1,7 +1,3 @@
-Ecco una versione "abbellita" del tuo README\! 😉
-
------
-
 # 🎬 My IMDB – esercizio per Progetto di Sistemi Web
 
 Applicazione Rails 💎 8 che gestisce film 🎥, attori 🧑‍🎤 e cast 📋. Include ricerca 🔎 su Actors/Movies, pagina dettagli Attore (età, luogo di nascita, patrimonio, film collegati ℹ️) e valutazione a stelle ⭐ dei Film (0–5) visibile in index e show.
