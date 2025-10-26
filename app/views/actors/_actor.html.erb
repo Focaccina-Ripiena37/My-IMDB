@@ -1,0 +1,22 @@
+<%# app/views/actors/_actor.html.erb %>
+<%# Renderizzato da index: render @actors %>
+<% base = "actors/#{actor.name.to_s.parameterize}" %>
+
+<div class="card actor-card">
+  <%= image_tag safe_image_path(base, fallback: "actors/placeholder.png"),
+                alt: actor.name,
+                class: "card-img" %>
+
+  <div class="card-body">
+    <h3><%= actor.name %></h3>
+    <% if actor.dob.present? %>
+      <p><small>Nato il: <%= actor.dob.strftime('%d/%m/%Y') %></small></p>
+    <% end %>
+
+    <p class="actions">
+      <%= link_to "Show", actor_path(actor) %> ·
+      <%= link_to "Edit", edit_actor_path(actor) %> ·
+      <%= button_to "Delete", actor_path(actor), method: :delete, form: { data: { turbo_confirm: "Eliminare l'attore?" } } %>
+    </p>
+  </div>
+</div>

@@ -1,0 +1,63 @@
+/*
+ * This is a manifest file that'll be compiled into application.css.
+ *
+ * With Propshaft, assets are served efficiently without preprocessing steps. You can still include
+ * application-wide styles in this file, but keep in mind that CSS precedence will follow the standard
+ * cascading order, meaning styles declared later in the document or manifest will override earlier ones,
+ * depending on specificity.
+ *
+ * Consider organizing styles into separate files for maintainability.
+ */
+
+ /* Griglie base */
+#actors, #movies {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 16px;
+  align-items: start;
+}
+
+/* Card */
+.card {
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 1px 2px rgba(0,0,0,.04);
+}
+
+.card-img {
+  width: 100%;
+  height: 300px;         /* regola a piacere */
+  object-fit: cover;     /* mantiene il crop gradevole */
+  display: block;
+}
+
+.card-body { padding: 12px; }
+
+.card-body h3 {
+  margin: 0 0 6px;
+  font-size: 1.05rem;
+}
+
+.actions { margin-top: 8px; }
+
+.actions a { text-decoration: none; }
+
+.actions form { display: inline; }
+
+/* Buttons (tiny utility styles) */
+.btn { display:inline-block; padding:.4rem .6rem; border-radius:8px; border:1px solid #e5e7eb; background:#f9fafb; cursor:pointer; }
+.btn:hover { background:#f3f4f6; }
+.btn-danger { background:#ef4444; color:#fff; border-color:#ef4444; }
+.btn-danger:hover { background:#dc2626; }
+.btn-sm { padding:.25rem .5rem; font-size:.9rem; }
+
+/* Cast list */
+.cast-list { list-style:none; padding:0; margin:0; }
+.cast-list li { display:flex; align-items:center; justify-content:space-between; padding:.5rem 0; border-bottom:1px solid #eee; }
+
+/* Stars rating */
+.stars { display:inline-flex; gap: 2px; vertical-align: middle; }
+.star { color: #d1d5db; font-size: 1rem; }
+.star.filled { color: #f59e0b; }

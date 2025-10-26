@@ -1,0 +1,26 @@
+<%# app/views/movies/_movie.html.erb %>
+<%# Card base usata in alcune liste %>
+<% base = "movies/#{movie.title.to_s.parameterize}" %>
+
+<div class="card movie-card">
+  <%= image_tag safe_image_path(base, fallback: "movies/placeholder.png"),
+                alt: movie.title,
+                class: "card-img" %>
+
+  <div class="card-body">
+    <h3><%= movie.title %></h3>
+    <div><%= star_rating(movie.rating) %></div>
+    <% if movie.director.present? %>
+      <p><small>Regia: <%= movie.director %></small></p>
+    <% end %>
+    <% if movie.duration.present? %>
+      <p><small>Durata: <%= movie.duration %> min</small></p>
+    <% end %>
+
+    <div class="actions">
+      <%= link_to "Show", movie_path(movie) %> ·
+      <%= link_to "Edit", edit_movie_path(movie) %> ·
+      <%= button_to "Delete", movie_path(movie), method: :delete, form: { data: { turbo_confirm: "Eliminare il film?" } } %>
+    </div>
+  </div>
+</div>

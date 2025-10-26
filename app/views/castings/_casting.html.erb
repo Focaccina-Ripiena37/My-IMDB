@@ -1,0 +1,11 @@
+<div class="casting">
+  <strong><%= casting.actor.name %></strong>
+  as
+  <em><%= casting.character %></em>
+  ·
+  <%= button_to "Remove",
+      movie_casting_path(casting.movie, casting),
+      method: :delete,
+      form: { data: { turbo_confirm: "Remove this cast member?" } },
+      class: "btn btn-danger btn-sm" %>
+</div>

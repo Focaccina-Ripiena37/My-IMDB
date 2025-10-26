@@ -1,0 +1,18 @@
+<p style="color: green"><%= notice %></p>
+
+<% content_for :title, "Actors" %>
+
+<h1>Actors</h1>
+
+<%= form_with url: actors_path, method: :get, local: true, html: { style: "margin: .5rem 0 1rem;" } do %>
+  <input type="text" name="q" value="<%= @q %>" placeholder="Cerca attore..." style="width: 280px;">
+  <button class="btn btn-sm" type="submit">Cerca</button>
+<% end %>
+
+<div class="cards-grid">
+  <%= render @actors, partial: "actor_card", as: :actor %>
+</div>
+
+<p style="margin-top:1rem;">
+  <%= link_to "New actor", new_actor_path %>
+</p>

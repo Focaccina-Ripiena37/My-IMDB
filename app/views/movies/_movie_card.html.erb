@@ -1,0 +1,16 @@
+<% base = "movies/#{movie.title.to_s.parameterize}" %>
+<%= link_to movie_path(movie), class: "card-link" do %>
+  <article class="card shelf">
+    <div class="card-img-wrap">
+      <%= image_tag safe_image_path(base, fallback: "movies/placeholder.png"),
+                    alt: "#{movie.title} poster" %>
+    </div>
+    <div class="card-body">
+      <h3 class="card-title"><%= movie.title %></h3>
+      <div><%= star_rating(movie.rating) %></div>
+      <% if movie.director.present? %>
+        <div class="muted">di <%= movie.director %></div>
+      <% end %>
+    </div>
+  </article>
+<% end %>

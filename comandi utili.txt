@@ -1,0 +1,8 @@
+# in chiusura sessione eseguo da PowerShell nella root del progetto, per salvare lo stato attuale del databse nel file db/seeds.rb
+
+.\bin\run-server.ps1
+
+# all' avvio sovrascrivere completamente il database con i dati presenti nel file db/seeds.rb
+bundle exec rails db:seed:replant
+ruby bin\rails s
+

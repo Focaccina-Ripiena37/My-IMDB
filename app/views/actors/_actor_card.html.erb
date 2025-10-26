@@ -1,0 +1,13 @@
+<% base = "actors/#{actor.name.to_s.parameterize}" %>
+<article class="card">
+  <div class="card-img-wrap avatar-wrap">
+    <%= image_tag safe_image_path(base, fallback: "actors/placeholder.png"),
+                  alt: actor.name %>
+  </div>
+  <div class="card-body">
+    <h3 class="card-title"><%= actor.name %></h3>
+    <% if actor.dob.present? %>
+      <div class="muted"><%= actor.dob.strftime("%d/%m/%Y") %></div>
+    <% end %>
+  </div>
+</article>

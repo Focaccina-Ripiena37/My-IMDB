@@ -1,0 +1,43 @@
+<% content_for :title, @movie.title %>
+
+<% base = "movies/#{@movie.title.to_s.parameterize}" %>
+
+<article class="card shelf" style="max-width: 720px; margin: 0 auto 1rem;">
+  <div class="card-img-wrap">
+    <%= image_tag safe_image_path(base, fallback: "movies/placeholder.png"),
+                  alt: @movie.title %>
+  </div>
+  <div class="card-body">
+    <h2 class="card-title" style="font-size:1.25rem; margin:0 0 .25rem;">
+      <%= @movie.title %>
+    </h2>
+    <div><%= star_rating(@movie.rating) %></div>
+    <% if @movie.director.present? %>
+      <div class="muted">Regia: <%= @movie.director %></div>
+    <% end %>
+    <% if @movie.duration.present? %>
+      <div class="muted">Durata: <%= @movie.duration %> min</div>
+    <% end %>
+
+    <div class="actions" style="margin-top:.75rem;">
+      <%= link_to "Edit", edit_movie_path(@movie) %> ·
+      <%= link_to "Back", movies_path %> ·
+      <%= button_to "Delete", @movie, method: :delete,
+            form: { data: { turbo_confirm: "Eliminare il film?" } } %>
+    </div>
+  </div>
+</article>
+
+<section style="max-width: 720px; margin: 0 auto;">
+  <h3>Cast</h3>
+  <% if @movie.castings.any? %>
+    <div class="cast-list">
+      <%= render @movie.castings.includes(:actor), partial: "castings/casting", as: :casting %>
+    </div>
+  <% else %>
+    <p class="muted">Nessun casting ancora.</p>
+  <% end %>
+
+  <h4 style="margin-top:1rem;">Aggiungi al cast</h4>
+  <%= render "castings/form", movie: @movie %>
+</section>

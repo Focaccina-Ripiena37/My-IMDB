@@ -1,0 +1,51 @@
+<% content_for :title, @actor.name %>
+
+<% base = "actors/#{@actor.name.to_s.parameterize}" %>
+
+<article class="card" style="max-width: 720px; margin: 0 auto 1rem;">
+  <%= image_tag safe_image_path(base, fallback: "actors/placeholder.png"),
+                alt: @actor.name,
+                class: "card-img" %>
+  <div class="card-body">
+    <h2 style="margin:0 0 .25rem"><%= @actor.name %></h2>
+    <% if @actor.dob.present? %>
+      <div class="muted">
+        Nato il <%= @actor.dob.strftime('%d/%m/%Y') %>
+        <% if @actor.age %>
+          · Età: <%= @actor.age %> anni
+        <% end %>
+      </div>
+    <% end %>
+    <% if @actor.birthplace.present? %>
+      <div class="muted">Luogo di nascita: <%= @actor.birthplace %></div>
+    <% end %>
+    <% if @actor.net_worth.present? %>
+      <div class="muted">Patrimonio: $<%= number_with_delimiter(@actor.net_worth, delimiter: ',') %></div>
+    <% end %>
+
+    <div class="actions" style="margin-top:.75rem;">
+      <%= link_to "Edit", edit_actor_path(@actor) %> ·
+      <%= link_to "Back", actors_path %> ·
+      <%= button_to "Delete", @actor, method: :delete,
+            form: { data: { turbo_confirm: "Eliminare l'attore?" } } %>
+    </div>
+  </div>
+</article>
+
+<section style="max-width: 720px; margin: 0 auto;">
+  <h3>Filmografia</h3>
+  <% if @actor.movies.any? %>
+    <ul class="cast-list">
+      <% @actor.movies.order(:title).each do |m| %>
+        <li>
+          <div>
+            <strong><%= link_to m.title, movie_path(m) %></strong>
+            <span class="muted"> · <%= star_rating(m.rating) %></span>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p class="muted">Nessun film collegato.</p>
+  <% end %>
+</section>
