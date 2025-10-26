@@ -5,6 +5,7 @@ class MoviesController < ApplicationController
   def index
     @q = params[:q].to_s.strip
     @movies = Movie.search(@q).order(:title)
+    @movie_titles = Movie.distinct.order(:title).pluck(:title)
   end
 
   # GET /movies/1 or /movies/1.json

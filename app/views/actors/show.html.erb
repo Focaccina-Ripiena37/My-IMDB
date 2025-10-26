@@ -7,9 +7,9 @@
                 alt: @actor.name,
                 class: "card-img" %>
   <div class="card-body">
-    <h2 style="margin:0 0 .25rem"><%= @actor.name %></h2>
+    <h2 class="actor-title" style="margin:0 0 .25rem"><%= @actor.name %></h2>
     <% if @actor.dob.present? %>
-      <div class="muted">
+      <div class="muted details-text">
         Nato il <%= @actor.dob.strftime('%d/%m/%Y') %>
         <% if @actor.age %>
           · Età: <%= @actor.age %> anni
@@ -17,10 +17,21 @@
       </div>
     <% end %>
     <% if @actor.birthplace.present? %>
-      <div class="muted">Luogo di nascita: <%= @actor.birthplace %></div>
+      <div class="muted details-text">Luogo di nascita: <%= @actor.birthplace %></div>
     <% end %>
     <% if @actor.net_worth.present? %>
-      <div class="muted">Patrimonio: $<%= number_with_delimiter(@actor.net_worth, delimiter: ',') %></div>
+      <div class="muted details-text">Patrimonio: $<%= number_with_delimiter(@actor.net_worth, delimiter: ',') %></div>
+    <% end %>
+
+    <% if @actor.awards_list.any? %>
+      <div class="details-text" style="margin-top:.5rem;">
+        <span class="awards-label">Premi:</span>
+        <ul class="awards-list">
+          <% @actor.awards_list.each do |award| %>
+            <li><%= award %></li>
+          <% end %>
+        </ul>
+      </div>
     <% end %>
 
     <div class="actions" style="margin-top:.75rem;">

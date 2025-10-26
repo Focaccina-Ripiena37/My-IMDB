@@ -1,10 +1,52 @@
-/* Griglia generica per card */
+/* Wrapper pagina: occupa tutta la larghezza disponibile */
+.page-section {
+  max-width: none;           /* nessun limite: usa tutta la viewport */
+  margin: 0;
+  padding: 1.5rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* (rimosso full-bleed: la griglia userà auto-fit per riempire lo spazio) */
+
+/* Form di ricerca */
+.search-form {
+  margin: 0.5rem 0 1rem;
+}
+
+.search-form input[type="text"] {
+  width: 280px;
+  max-width: 100%;
+}
+
+.new-link {
+  margin-top: 1rem;
+}
+
+/* Griglia responsive per card: riempie tutta la riga con colonne flessibili */
 .cards-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 1.25rem;
   align-items: start;
+  width: 100%;
+  justify-items: stretch;
 }
+
+/* Assicura che gli elementi dentro la griglia occupino tutta la traccia */
+.cards-grid > * { min-width: 0; }
+.cards-grid article,
+.cards-grid .card,
+.cards-grid a.card-link { max-width: none; width: 100%; margin: 0; }
+
+/* Breakpoint manuali non necessari con auto-fit */
+
+/* Testi scuri nelle card sulle schermate principali */
+.cards-grid .card { color: #111; }
+.cards-grid .card .card-title { color: #111; }
+.cards-grid .muted { color: #374151; }
+.cards-grid .actions a { color: #111; }
+.cards-grid .actions a:hover { color: #000; }
 
 /* Card base */
 .card {
@@ -67,3 +109,43 @@
 /* Link che avvolge la card (rimuove sottolineatura) */
 .card-link { color: inherit; text-decoration: none; display: block; }
 .card-link:focus-visible { outline: 2px solid #111; outline-offset: 3px; }
+
+/* Link azioni nelle card: arancione, con hover più scuro */
+.cards-grid .actions a,
+.cards-grid .actions a:visited {
+  color: #f59e0b;           /* arancione */
+  text-decoration: none;
+  font-weight: 600;
+}
+.cards-grid .actions a:hover {
+  color: #d97706;           /* arancione più scuro */
+  text-decoration: underline;
+}
+.cards-grid .actions a:focus-visible {
+  outline: 2px solid #f59e0b;
+  outline-offset: 2px;
+}
+
+/* Styles per il form di aggiunta attore e cast attuale */
+.cast-form {
+  margin: 1.5rem 0;
+}
+.cast-form h4 {
+  margin-bottom: .5rem;
+}
+.cast-form ul {
+  list-style: none;
+  padding: 0;
+}
+.cast-form li {
+  margin: .25rem 0;
+}
+.cast-form strong {
+  font-weight: 700;
+}
+
+/*
+ *= require_tree .
+ *= require cards
+ *= require_self
+ */

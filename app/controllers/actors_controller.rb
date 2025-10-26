@@ -5,6 +5,7 @@ class ActorsController < ApplicationController
   def index
     @q = params[:q].to_s.strip
     @actors = Actor.search(@q).order(:name)
+    @actor_names = Actor.distinct.order(:name).pluck(:name)
   end
 
   # GET /actors/1 or /actors/1.json
@@ -66,6 +67,6 @@ class ActorsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def actor_params
-      params.require(:actor).permit(:name, :dob, :birthplace, :net_worth)
+      params.require(:actor).permit(:name, :dob, :birthplace, :net_worth, :awards)
     end
 end

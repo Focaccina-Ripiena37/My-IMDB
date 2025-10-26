@@ -31,6 +31,11 @@
     <%= form.number_field :net_worth, step: 1 %>
   </div>
 
+  <div class="field">
+    <%= form.label :awards, "Premi (uno per riga)" %>
+    <%= form.text_area :awards, rows: 6, placeholder: "Esempio:\nOscar 2024 – Miglior attore non protagonista (Oppenheimer)\nGolden Globe – Miglior attore (Forrest Gump)" %>
+  </div>
+
   <div>
     <%= form.submit %>
   </div>

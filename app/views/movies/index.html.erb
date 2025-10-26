@@ -1,15 +1,24 @@
 <% content_for :title, "Movies" %>
-<h1>Movies</h1>
 
-<%= form_with url: movies_path, method: :get, local: true, html: { style: "margin: .5rem 0 1rem;" } do %>
-  <input type="text" name="q" value="<%= @q %>" placeholder="Cerca film..." style="width: 280px;">
-  <button class="btn btn-sm" type="submit">Cerca</button>
-<% end %>
+<div class="page-section">
+  <h1>Movies</h1>
 
-<div class="cards-grid">
-  <%= render @movies, partial: "movie_card", as: :movie %>
+  <%= form_with url: movies_path, method: :get, local: true, html: { class: "search-form" } do %>
+    <input type="text" name="q" value="<%= @q %>" placeholder="Cerca film..." list="movie-titles" autocomplete="off">
+    <datalist id="movie-titles">
+      <% @movie_titles.each do |title| %>
+        <option value="<%= title %>"></option>
+      <% end %>
+    </datalist>
+    <button class="btn btn-sm" type="submit">Cerca</button>
+  <% end %>
+
+  <div class="cards-grid">
+    <%= render @movies, partial: "movie_card", as: :movie %>
   </div>
 
-<p style="margin-top:1rem;">
-  <%= link_to "New movie", new_movie_path %>
-</p>
+  <p class="new-link">
+    <%= link_to "New movie", new_movie_path %>
+  </p>
+</div>
+

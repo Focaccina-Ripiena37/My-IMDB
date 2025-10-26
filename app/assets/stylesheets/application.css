@@ -9,7 +9,35 @@
  * Consider organizing styles into separate files for maintainability.
  */
 
- /* Griglie base */
+/* Base theme: dark by default */
+body {
+  background-color: #1f1f1f; /* neutral dark gray */
+  color: #e5e7eb;            /* gray-200 */
+  display: block !important; /* override any external centering/grid */
+}
+
+/* Override Simple.css main container width so grids can use full screen */
+main {
+  max-width: none !important; /* remove any width clamp from external CSS */
+  width: 100% !important;
+  margin: 0 auto;             /* keep centered, but full width */
+  padding-left: 1rem;         /* comfortable side padding */
+  padding-right: 1rem;
+  box-sizing: border-box;
+  display: block !important;  /* avoid grid/centering from external CSS */
+}
+
+/* Also remove width clamps on direct children of main (Simple.css sets them) */
+main > * {
+  max-width: none !important;
+  width: 100% !important;
+  justify-self: stretch !important;
+}
+
+/* Make the top header blend with dark background */
+header { background: transparent !important; }
+
+/* Griglie base */
 #actors, #movies {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
@@ -19,11 +47,11 @@
 
 /* Card */
 .card {
-  border: 1px solid #e5e7eb;
+  border: 1px solid #444;   /* subtle on dark */
   border-radius: 12px;
   overflow: hidden;
-  background: #fff;
-  box-shadow: 0 1px 2px rgba(0,0,0,.04);
+  background: #3a3a3a;      /* light dark */
+  box-shadow: 0 1px 2px rgba(0,0,0,.25);
 }
 
 .card-img {
@@ -40,6 +68,10 @@
   font-size: 1.05rem;
 }
 
+/* Titles and text colors */
+.card .card-title, .actor-title { color: #f59e0b; }
+.muted, .details-text { color: #ffffff; }
+
 .actions { margin-top: 8px; }
 
 .actions a { text-decoration: none; }
@@ -55,9 +87,21 @@
 
 /* Cast list */
 .cast-list { list-style:none; padding:0; margin:0; }
-.cast-list li { display:flex; align-items:center; justify-content:space-between; padding:.5rem 0; border-bottom:1px solid #eee; }
+.cast-list li { display:flex; align-items:center; justify-content:space-between; padding:.5rem 0; }
+.cast-list li:not(:last-child) { border-bottom:1px solid #374151; }
+
+/* Remove extra separators on avatar images */
+.avatar-wrap { border-bottom: none; }
+
+/* Awards label (only the word "Premi:") */
+.awards-label { color: #000; font-size: .9rem; font-weight: 400; }
+
 
 /* Stars rating */
 .stars { display:inline-flex; gap: 2px; vertical-align: middle; }
 .star { color: #d1d5db; font-size: 1rem; }
 .star.filled { color: #f59e0b; }
+
+.icon-trophy { vertical-align: -2px; fill: #f59e0b; margin-right: 6px; }
+.awards-list { margin: 0.5rem 0 1rem; padding-left: 1.2rem; color:#000; font-size:.9rem; font-weight:400; }
+.awards-list li { margin: 0.15rem 0; color:#000; font-size:.9rem; font-weight:400; }

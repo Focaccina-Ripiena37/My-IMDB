@@ -2,17 +2,24 @@
 
 <% content_for :title, "Actors" %>
 
-<h1>Actors</h1>
+<div class="page-section">
+  <h1>Actors</h1>
 
-<%= form_with url: actors_path, method: :get, local: true, html: { style: "margin: .5rem 0 1rem;" } do %>
-  <input type="text" name="q" value="<%= @q %>" placeholder="Cerca attore..." style="width: 280px;">
-  <button class="btn btn-sm" type="submit">Cerca</button>
-<% end %>
+  <%= form_with url: actors_path, method: :get, local: true, html: { class: "search-form" } do %>
+    <input type="text" name="q" value="<%= @q %>" placeholder="Cerca attore..." list="actor-names" autocomplete="off">
+    <datalist id="actor-names">
+      <% @actor_names.each do |name| %>
+        <option value="<%= name %>"></option>
+      <% end %>
+    </datalist>
+    <button class="btn btn-sm" type="submit">Cerca</button>
+  <% end %>
 
-<div class="cards-grid">
-  <%= render @actors, partial: "actor_card", as: :actor %>
+  <div class="cards-grid">
+    <%= render @actors, partial: "actor_card", as: :actor %>
+  </div>
+
+  <p class="new-link">
+    <%= link_to "New actor", new_actor_path %>
+  </p>
 </div>
-
-<p style="margin-top:1rem;">
-  <%= link_to "New actor", new_actor_path %>
-</p>

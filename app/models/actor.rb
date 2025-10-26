@@ -26,6 +26,17 @@ class Actor < ApplicationRecord
     years
   end
 
+  # Returns awards as an array of lines (split by newline)
+  def awards_list
+    return [] if awards.blank?
+    awards.to_s.split(/\r?\n/).map(&:strip).reject(&:blank?)
+  end
+
+  def awards_list
+    return [] if awards.blank?
+    awards.to_s.split(/\r?\n/).map(&:strip).reject(&:blank?)
+  end
+
   private
 
   def dob_in_the_past

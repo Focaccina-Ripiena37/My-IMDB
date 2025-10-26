@@ -28,4 +28,12 @@ module ApplicationHelper
       end.join.html_safe
     end
   end
+
+  def trophy_icon
+    <<~SVG.html_safe
+      <svg class="icon-trophy" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+        <path d="M6 2h12v2h3v3c0 3.31-2.69 6-6 6h-.35A5.99 5.99 0 0 1 12 15a5.99 5.99 0 0 1-2.65-2H9c-3.31 0-6-2.69-6-6V4h3V2zm-1 6c0 2.21 1.79 4 4 4 .35 0 .69-.05 1-.14V6H5v2zm15-2h-5v5.86c.31.09.65.14 1 .14 2.21 0 4-1.79 4-4V6zM9 17h6v2H9v-2zm-2 3h10v2H7v-2z" />
+      </svg>
+    SVG
+  end
 end
